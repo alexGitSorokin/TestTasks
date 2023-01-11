@@ -35,7 +35,7 @@ public class UI : MonoBehaviour
         if (_resultsToDisplay.Count > 10)
             _resultsToDisplay.RemoveAt(0);
 
-        _resultsText.text += "Results \n";
+        _resultsText.text += "Results: \n";
         _resultsToDisplay.ToList().ForEach(x => _resultsText.text += $"{x}\n");
     }
 

@@ -21,19 +21,19 @@ public class GameManager : MonoBehaviour
         _timer = FindObjectOfType<CustomTimer>();
          _input = FindObjectOfType<InputManager>();
 
-        if (_input != null || _timerController)
+        if (_input != null && _timerController)
             _input.TimerButtonPressed += _timerController.ChangeTimerMode;
 
         if (_player != null && _timerController != null)
             _timerController.FinalButtonPressed += _player.BackToStart;
 
-        if (_timer != null || _ui != null)
+        if (_timer != null && _ui != null)
             _timer.TimeChanged += _ui.OnTimeChaged;
 
-        if (_timerController != null || _ui != null)
+        if (_timerController != null && _ui != null)
             _timerController.StopButtonPressed += _ui.AddNewItem;
 
-        if (_startButton != null || _ui != null)
+        if (_startButton != null && _ui != null)
         {
             _startButton.PlayerArrived += _ui.ShowHint;
             _startButton.PlayerLeft += _ui.HideHint;
@@ -42,20 +42,20 @@ public class GameManager : MonoBehaviour
 
     private void OnDisable()
     {
-        if (_input != null || _timerController)
+        if (_input != null && _timerController)
             _input.TimerButtonPressed -= _timerController.ChangeTimerMode;
 
         if (_player != null && _timerController != null)
             _timerController.FinalButtonPressed -= _player.BackToStart;
 
-        if (_timer != null || _ui != null)
+        if (_timer != null && _ui != null)
             _timer.TimeChanged -= _ui.OnTimeChaged;
 
-        if (_timerController != null || _ui != null)
+        if (_timerController != null && _ui != null)
             _timerController.StopButtonPressed -= _ui.AddNewItem;
 
 
-        if (_startButton != null || _ui != null)
+        if (_startButton != null && _ui != null)
         {
             _startButton.PlayerArrived -= _ui.ShowHint;
             _startButton.PlayerLeft -= _ui.HideHint;
