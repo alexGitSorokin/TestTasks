@@ -15,26 +15,8 @@ public class UI : MonoBehaviour
     #endregion
 
     #region Methods
-    private void OnEnable()
-    {
-        var _timer = FindObjectOfType<CustomTimer>();
-        if (_timer != null)
-            _timer.TimeChanged += OnTimeChaged;
-        
-        var _timerController = FindObjectOfType<TimerController>();
-        if (_timerController != null)
-            _timerController.StopButtonPressed += AddNewItem;
-
-        var _startButton = FindObjectOfType<StartButton>();
-        if (_startButton != null)
-        {
-            _startButton.PlayerArrived += ShowHint;
-            _startButton.PlayerLeft += HideHint;
-        }
-    }
-
-    private void ShowHint() => _hint.gameObject.SetActive(true);
-    private void HideHint() => _hint.gameObject.SetActive(false);
+    public void ShowHint() => _hint.gameObject.SetActive(true);
+    public void HideHint() => _hint.gameObject.SetActive(false);
 
     private void Start()
     {
@@ -42,7 +24,7 @@ public class UI : MonoBehaviour
         Cursor.visible = false;
     }
 
-    private void AddNewItem(string newResult)
+    public void AddNewItem(string newResult)
     {
         if (string.IsNullOrEmpty(newResult))
             return;
@@ -57,28 +39,10 @@ public class UI : MonoBehaviour
         _resultsToDisplay.ToList().ForEach(x => _resultsText.text += $"{x}\n");
     }
 
-    private void OnTimeChaged(string value)
+    public void OnTimeChaged(string value)
     { 
         if (!string.IsNullOrEmpty(value))
             _timerText.text = value;
-    }
-
-    private void OnDisable()
-    {
-        var _timer = FindObjectOfType<CustomTimer>();
-        if (_timer != null)
-            _timer.TimeChanged -= OnTimeChaged;
-
-        var _timerController = FindObjectOfType<TimerController>();
-        if (_timerController != null)
-            _timerController.StopButtonPressed -= AddNewItem;
-
-        var _startButton = FindObjectOfType<StartButton>();
-        if (_startButton !=null)
-        {
-            _startButton.PlayerArrived -= ShowHint;
-            _startButton.PlayerLeft -= HideHint;
-        }
     }
     #endregion
 }

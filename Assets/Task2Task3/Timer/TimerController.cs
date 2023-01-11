@@ -19,14 +19,7 @@ public class TimerController : MonoBehaviour
 
     #endregion
 
-
     #region Methods
-    private void OnEnable()
-    {
-        var _input = FindObjectOfType<InputManager>();
-        if (_input != null)
-            _input.TimerButtonPressed += ChangeTimerMode;
-    }
 
     private void Start()
     {
@@ -56,13 +49,6 @@ public class TimerController : MonoBehaviour
         StopButtonPressed?.Invoke(_timer.CurrentValue.ToString("F2"));
         _timer.ResetTimer();
         FinalButtonPressed?.Invoke();
-    }
-
-    private void OnDisable()
-    {
-        var _input = FindObjectOfType<InputManager>();
-        if (_input != null)
-            _input.TimerButtonPressed -= ChangeTimerMode;
     }
     #endregion
 }

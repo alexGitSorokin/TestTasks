@@ -13,14 +13,7 @@ public class Player : MonoBehaviour
     #region Methods
     private void Awake() => Instance = this;
 
-    private void OnEnable()
-    {
-        var timerController = FindObjectOfType<TimerController>();
-        if (timerController != null)
-            timerController.FinalButtonPressed += BackToStart;
-    }
-
-    private void BackToStart()
+    public void BackToStart()
     {
         if (_startPosition != null)
         {
@@ -29,13 +22,6 @@ public class Player : MonoBehaviour
             transform.position = _startPosition.transform.position;
             _controller.enabled = true;
         }
-    }
-
-    private void OnDisable()
-    {
-        var timerController = FindObjectOfType<TimerController>();
-        if (timerController != null)
-            timerController.FinalButtonPressed -= BackToStart;
     }
     #endregion
 }
